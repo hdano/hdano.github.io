@@ -1,0 +1,17 @@
+###################Tags#############################
+$azTags = Get-AzTag -Detailed
+$mainOut = $azTags | ForEach-Object{
+[PSCustomObject]@{
+    "TagName" = $_.Name
+    "TotalCount" = $_.Count
+    "Values" = if($_.Values -ne $NULL){
+        ($_.Values.GetEnumerator() |
+        %{"{$($_.Name)}"}) -join ";"
+    }else{}
+    "Values:Count" = if($_.Values -ne $NULL){
+        ($_.Values.GetEnumerator() |
+        %{"{$($_.Name):$($_.Count)}"}) -join ";"
+    }else{}
+}}
+$mainOut | Export-Csv 'All_Tags.csv' -Force -NoTypeInformation
+

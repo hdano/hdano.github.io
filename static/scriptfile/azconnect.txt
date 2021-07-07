@@ -1,0 +1,9 @@
+# Connects to Az Account
+Connect-AzAccount
+# Get all subscriptions
+$azSubs = Get-AzSubscription
+# Loop through all Azure Subscriptions
+foreach ($azSub in $azSubs){
+    Set-AzContext $azSub.id | Out-Null
+}
+

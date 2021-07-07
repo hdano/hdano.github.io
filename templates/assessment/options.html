@@ -1,0 +1,60 @@
+<div class="card bg-light" id="options">
+  <div class="card-header">Options</div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      {% for tab in tabs %}
+        {% set check_name = 'check_' + tab|lower %}
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="{{ check_name }}" id="{{ check_name }}" value="{{ tab|lower }}"{% if tab == 'Resources' %} checked{% endif %}>
+          <label class="form-check-label" for="{{ check_name }}">{{ tab }}
+            {% if tab == 'Resources' %}
+              &nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="moreResourcesToggle" data-bs-toggle="collapse" data-bs-target="#moreResources" aria-expanded="false" aria-controls="moreResources"><span class="badge bg-light text-dark">+</span></a>
+            {% endif %}
+          </label>
+        </div>
+        {% if tab == 'Resources' %}
+          <div id="moreResources" class="collapse">
+            <ul class="list-group list-group-flush">
+              {% set tabs2 = {
+                  'managedClusters': 'Managed Clusters',
+                  'automationAccounts': 'Automation Accounts',
+                  'loadBalancers': 'Load Balancers',
+                  'networkSecurityGroups': 'Network Security Groups',
+                  'networkWatchers': 'Network Watchers',
+                  'publicIPAddresses': 'Public Addresses',
+                  'registries': 'Container Registries',
+                  'routeTables': 'Route Tables',
+                  'solutions': 'Solutions',
+                  'userAssignedIdentities': 'User Assigned Identities',
+                  'vaults': 'Key Vaults',
+                  'virtualMachineScaleSets': 'VM Scale Sets',
+                  'virtualNetworks': 'Virtual Networks',
+                  'workspaces': 'Workspaces'
+                } %}
+              {% for tab2 in tabs2 %}
+                <li class="list-group-item">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="check_resources_subs" id="{{ check_name2 }}_{{ tab2 }}" value="{{ tab2 }}"{% if tab2 == 'managedClusters' %} checked{% endif %}>
+                    <label class="form-check-label" for="{{ check_name2 }}">{{ tabs2[tab2] }}</label>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </li>
+    <li class="list-group-item">
+      <form class="form-inline">
+        {% set fields = {'subscription_id': 'Subscription ID', 'tenant_id': 'Tenant Id', 'app_id': 'App ID', 'client_secret': 'ClientSecret'} %}
+        {% for field in fields %}
+          <label class="sr-only" for="{{ field }}">{{ fields[field] }}</label>
+          <input type="text" class="form-control mb-2 mr-sm-2" id="{{ field }}" placeholder="XXXX">
+        {% endfor %}
+      </form>
+    </li>
+    <li class="list-group-item">
+      <button type="button" class="btn btn-primary mb-2" id="btnStart">Start</button>
+    </li>
+  </ul>
+</div>

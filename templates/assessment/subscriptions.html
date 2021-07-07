@@ -1,0 +1,56 @@
+<h2>
+  Subscriptions
+  <button class="btn btn-sm btn-secondary float-end" id="btnExportSubscriptions">Export to CSV</button>
+</h2>
+
+<table class="table" id="tableSubscriptions">
+  <thead>
+    <tr>
+      <th>Display Name</th>
+      <th>Subscription ID</th>
+      <th>Option</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<div class="d-none">
+  <table class="table table-sm" id="tableSubscriptionsFull">
+    <thead>
+      <tr>
+        <th>Subscription ID</th>
+        <th>Display Name</th>
+        <th>Authorization Source</th>
+        <th>Managed by Tenants</th>
+        <th>Tenant ID</th>
+        <th>State</th>
+        <th>Location Placement ID</th>
+        <th>Quota ID</th>
+        <th>Spending Limit</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<div id="subscriptionInfo" class="rowDetails d-none">
+  <h3>
+    Subscription Info: <span id="nameSubscriptions"></span>
+  </h3>
+  <div class="card-body">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">Properties</div>
+          <ul class="list-group list-group-flush" id="listSubProperties"></ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-header">Policies</div>
+          <ul class="list-group list-group-flush" id="listSubPolicies"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

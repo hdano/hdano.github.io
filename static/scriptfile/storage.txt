@@ -1,0 +1,50 @@
+###################Storages#############################
+$azStorageAccs = Get-AzStorageAccount
+$mainOut = $azStorageAccs| ForEach-Object{
+[PSCustomObject]@{
+    "StorageAccountName" = $_.StorageAccountName          
+    "ResourceGroupName" = $_.ResourceGroupName           
+    "Id" = $_.Id                          
+    "AllowCrossTenantReplication" = $_.AllowCrossTenantReplication 
+"KeyCreationTime" = "{Key1:$($_.KeyCreationTime.Key1)};{Key2:$($_.KeyCreationTime.Key1)}"          
+    "KeyPolicy" = $_.KeyPolicy                   
+    "SasPolicy" = $_.SasPolicy                   
+    "Location" = $_.Location                    
+"Sku" = "{Name = $($_.Sku.Name)};{Tier = $($_.Sku.Tier)};{ResourceType = $($_.Sku.ResourceType)};{Kind = $($_.Sku.Kind)};{Locations = $($_.Sku.Locations)};{Capabilities = $($_.Sku.Capabilities)};{Restrictions = $($_.Sku.Restrictions)}"                     
+    "Kind" = $_.Kind          
+        "Encryption Services" = "{Blob:{Enabled:$($_.Encryption.Services.Blob.Enabled)};{LastEnabledTime:($($_.Encryption.Services.Blob.LastEnabledTime))};{KeyType:$($_.Encryption.Services.Blob.KeyType)}};{File:{Enabled:$($_.Encryption.Services.File.Enabled)};{LastEnabledTime:($($_.Encryption.Services.File.LastEnabledTime))};{KeyType:$($_.Encryption.Services.File.KeyType)}};{Table:{Enabled:$($_.Encryption.Services.Table.Enabled)};{LastEnabledTime:($($_.Encryption.Services.Table.LastEnabledTime))};{KeyType:$($_.Encryption.Services.Table.KeyType)}};{Queue:{Enabled:$($_.Encryption.Services.Queue.Enabled)};{LastEnabledTime:($($_.Encryption.Services.Queue.LastEnabledTime))};{KeyType:$($_.Encryption.Services.Queue.KeyType)}}"
+"Encryption Key Source" = $_.Encryption.KeySource
+    "AccessTier" = $_.AccessTier                  
+    "CreationTime" = $_.CreationTime                
+    "CustomDomain" = $_.CustomDomain                
+    "Identity" = $_.Identity                    
+    "LastGeoFailoverTime" = $_.LastGeoFailoverTime         
+"PrimaryEndpoints" = "{Blob = $($_.PrimaryEndpoints.Blob)};{Queue = $($_.PrimaryEndpoints.Queue)};{Table = $($_.PrimaryEndpoints.Table)};{Web = $($_.PrimaryEndpoints.Web)};{Dfs = $($_.PrimaryEndpoints.Dfs)};{MicrosoftEndpoints = $($_.PrimaryEndpoints.MicrosoftEndpoints)};{InternetEndpoints = $($_.PrimaryEndpoints.InternetEndpoints)}"
+    "PrimaryLocation" = $_.PrimaryLocation             
+    "ProvisioningState" = $_.ProvisioningState           
+    "SecondaryEndpoints" = $_.SecondaryEndpoints          
+    "SecondaryLocation" = $_.SecondaryLocation           
+    "StatusOfPrimary" = $_.StatusOfPrimary             
+    "StatusOfSecondary" = $_.StatusOfSecondary           
+    "Tags" = if($_.Tags -ne $NULL){
+        ($_.Tags.GetEnumerator() |
+            %{"{$($_.Key):$($_.Value)}"}) -join ";"
+    }else{}          
+    "EnableHttpsTrafficOnly" = $_.EnableHttpsTrafficOnly      
+    "AzureFilesIdentityBasedAuth" = $_.AzureFilesIdentityBasedAuth 
+    "EnableHierarchicalNamespace" = $_.EnableHierarchicalNamespace 
+    "FailoverInProgress" = $_.FailoverInProgress          
+    "LargeFileSharesState" = $_.LargeFileSharesState        
+"NetworkRuleSet" = "{Bypass = $($_.NetworkRuleSet.Bypass)};{DefaultAction = $($_.NetworkRuleSet.DefaultAction)};{IpRules = $($_.NetworkRuleSet.IpRules)};{VirtualNetworkRules = $($_.NetworkRuleSet.VirtualNetworkRules)};{ResourceAccessRules = $($_.NetworkRuleSet.ResourceAccessRules)}"                      
+    "RoutingPreference" = $_.RoutingPreference           
+    "BlobRestoreStatus" = $_.BlobRestoreStatus           
+    "GeoReplicationStats" = $_.GeoReplicationStats         
+    "AllowBlobPublicAccess" = $_.AllowBlobPublicAccess       
+    "MinimumTlsVersion" = $_.MinimumTlsVersion           
+    "EnableNfsV3" = $_.EnableNfsV3                 
+    "AllowSharedKeyAccess" = $_.AllowSharedKeyAccess        
+    "ExtendedLocation" = $_.ExtendedLocation            
+"Context" = "{BlobEndPoint = $($_.Context.BlobEndPoint)};{TableEndPoint = $($_.Context.TableEndPoint)};{QueueEndPoint = $($_.Context.QueueEndPoint)};{FileEndPoint = $($_.Context.FileEndPoint)};{StorageAccountttps = $($_.Context.StorageAccountttps)};{StorageAccountName = $($_.Context.StorageAccountName)};{Name = $($_.Context.Name)};{EndPointSuffix = $($_.Context.EndPointSuffix)};{ConnectionStringttps = $($_.Context.ConnectionStringttps)}"
+}}
+$mainOut | Export-Csv 'All_StorageAccounts.csv' -Force -NoTypeInformation
+

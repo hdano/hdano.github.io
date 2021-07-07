@@ -1,0 +1,144 @@
+<h2>
+  Resources
+  <button class="btn btn-sm btn-secondary float-end" id="btnExportResources">Export to CSV</button>
+</h2>
+
+<table class="table" id="tableResources">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Group</th>
+      <th class="text-right">Option</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<div class="d-none">
+  <table class="table table-sm" id="tableResourcesFull">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Group</th>
+        <th>SKU</th>
+        <th>Kubernetes version</th>
+        <th>DNS prefix</th>
+        <th>API server address</th>
+        <th>RBAC</th>
+        <th>Encryption type</th>
+        <th>Network Type (plugin)</th>
+        <th>Pod CIDR</th>
+        <th>Service CIDR</th>
+        <th>DNS service IP</th>
+        <th>Docker bridge CIDR</th>
+        <th>Network policy</th>
+        <th>Load balancer</th>
+        <th>Private cluster</th>
+        <th>Add-ons</th>
+        <th>Identity Type</th>
+        <th>Identity Principal ID</th>
+        <th>Identity Tenant ID</th>
+        <th>Tags</th>
+        <th>Linux Profile - Admin User</th>
+        <th>Linux Profile - SSH Public Keys (Total)</th>
+        <th>User Credentials</th>
+        <th>Monitoring Credentials</th>
+        <th>Admin Credentials</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<div id="clusterInfo" class="rowDetails d-none">
+  <h3>
+    Managed Cluster Info: <span id="nameResources"></span>
+  </h3>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Properties</div>
+        <ul class="list-group list-group-flush" id="listProperties"></ul>
+      </div>
+      <br />
+      <div class="card">
+        <div class="card-header">Add-ons</div>
+        <ul class="list-group list-group-flush" id="listAddons"></ul>
+      </div>
+      <br />
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Network Profile</div>
+        <ul class="list-group list-group-flush" id="listNetworking"></ul>
+      </div>
+      <br />
+      <div class="card">
+        <div class="card-header">Linux Profile</div>
+        <ul class="list-group list-group-flush" id="listLinuxProfile"></ul>
+      </div>
+      <br />
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Tags</div>
+        <ul class="list-group list-group-flush" id="listTags"></ul>
+      </div>
+      <br />
+      <div class="card">
+        <div class="card-header">Identity</div>
+        <ul class="list-group list-group-flush" id="listIdentity"></ul>
+      </div>
+      <br />
+      <div class="card">
+        <div class="card-header">Cluster Credentials [kubeconfigs]</div>
+        <ul class="list-group list-group-flush" id="listCredentials"></ul>
+      </div>
+      <br />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          Agent Pools
+          <button class="btn btn-sm btn-secondary float-end" id="btnExportAgentPools" data-name="">Export to CSV</button>
+        </div>
+        <div class="card-body">
+          <div class="overflow-auto">
+            <table class="table table-sm" id="tableAgentPools">
+              <thead>
+                <tr>
+                  <th>resourceName</th>
+                  <th>name</th>
+                  <th>count</th>
+                  <th>vmSize</th>
+                  <th>osDiskSizeGB</th>
+                  <th>osDiskType</th>
+                  <th>kubeletDiskType</th>
+                  <th>maxPods</th>
+                  <th>type</th>
+                  <th>provisioningState</th>
+                  <th>powerState</th>
+                  <th>orchestratorVersion</th>
+                  <th>enableNodePublicIP</th>
+                  <th>nodeLabels</th>
+                  <th>mode</th>
+                  <th>enableEncryptionAtHost</th>
+                  <th>osType</th>
+                  <th>osSKU</th>
+                  <th>nodeImageVersion</th>
+                  <th>enableFIPS</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

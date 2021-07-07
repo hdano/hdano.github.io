@@ -1,0 +1,28 @@
+###################KeyVault###########################
+$azKeyVaults = Get-AzKeyVault
+$mainOut = $azKeyVaults | ForEach-Object{
+[PSCustomObject]@{
+"Vault Name" = $_.VaultName
+"Resource Group" = $_.ResourceGroupName
+"Location" = $_.Location
+"Resource ID" = $_.ResourceId
+"Tags" = if($_.Tags -ne $NULL){
+        ($_.Tags.GetEnumerator() |
+            %{"{$($_.Key):$($_.Value)}"}) -join ";"
+    }   
+"Keys" = (Get-AzKeyVaultKey -ResourceId $_.ResourceId |
+    %{
+    "{(KeyName:$($_.Name));(Version:$($_.Version));(Id:$($_.Id));(Enabled:$($_.Enabled));(Expires:$($_.Expires));(Not:$($_.Not));(Created:$($_.Created));(Updated:$($_.Updated));(Recovery:$($_.Recovery))}"
+    }) -join ";"
+"Secrets" = (Get-AzKeyVaultSecret -ResourceId $_.ResourceId |
+    %{
+    "{(Name:$($_.Name));(Version:$($_.Version));(Id:$($_.Id));(Enabled:$($_.Enabled));(Expires:$($_.Expires));(Not:$($_.Not));(Created:$($_.Created));(Updated:$($_.Updated));(Content:$($_.Content))}"
+    }) -join ";"
+"Certificates" = (Get-AzKeyVaultCertificate -ResourceId $_.ResourceId |
+    %{
+    "{(Name:$($_.Name));(Id:$($_.Id));(Version:$($_.Version));(Enabled:$($_.Enabled));(Expires:$($_.Expires));(NotBefore:$($_.NotBefore));(Created:$($_.Created));(Updated:$($_.Updated))}"
+    }) -join ";"
+
+}}
+$mainOut | Export-Csv 'All_KeyVaults.csv' -Force -NoTypeInformation
+

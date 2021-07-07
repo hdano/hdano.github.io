@@ -1,0 +1,17 @@
+####################Subscriptions#########################
+$mainOut = $azSubs| ForEach-Object{
+[PSCustomObject]@{
+    "Id" = $_.Id
+    "Name" = $_.Name
+    "State" = $_.State
+    "SubscriptionId" = $_.SubscriptionId
+    "TenantId" = $_.TenantId
+    "HomeTenantId" = $_.HomeTenantId
+    "ManagedByTenantIds" = $_.ManagedByTenantIds
+    "SubscriptionPolicies" = "{LocationPlacementId:$($_.SubscriptionPolicies.LocationPlacementId)};{QuotaId:$($_.SubscriptionPolicies.QuotaId)};{SpendingLimit:$($_.SubscriptionPolicies.SpendingLimit)}"
+    "ExtendedProperties" = "{Account:$($_.ExtendedProperties.Account)};{HomeTenant:$($_.ExtendedProperties.HomeTenant)};{Tenants:$($_.ExtendedProperties.Tenants)};{Environment:$($_.ExtendedProperties.Environment)}"
+    "CurrentStorageAccountName" = $_.CurrentStorageAccountName
+    "CurrentStorageAccount" = $_.CurrentStorageAccount
+}}
+$mainOut | Export-Csv 'All_Subscriptions.csv' -Force -NoTypeInformation
+

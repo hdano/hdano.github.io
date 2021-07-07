@@ -1,25 +1,6 @@
-version: '2'
-
+version: "3.3"
 services:
-  website:
+  web:
     build: .
-    command: uwsgi --py-autoreload=10 --ini deploy/uwsgi_config.ini
-    links:
-      - db
-    env_file:
-      - '.env'
     ports:
-      - '8000:8000'
-    volumes:
-      - ./:/Photos-Docker-Flask
-
-  db:
-    image: mysql:5.7
-    ports:
-      - "32000:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: insta_admin
-      MYSQL_PASSWORD: insta2018
-      MYSQL_DATABASE: insta_db
-
+      - "5000:5000"

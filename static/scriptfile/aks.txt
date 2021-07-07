@@ -1,0 +1,156 @@
+# Get all AKS Clusters in the subscription
+ $aksClusters = Get-AzAksCluster
+#######################AKS######################################
+$mainOut = $aksClusters | ForEach-Object{
+[PSCustomObject]@{
+"AKS Cluster Name" = $_.Name
+"Type" = $_.Type
+"Location" = $_.Location
+"Id" = $_.Id
+"Provisioning State" = $_.ProvisioningState
+"Max Agent Pools" = $_.MaxAgentPools
+"Kubernetes Version" = $_.KubernetesVersion
+"DNS Prefix" = $_.DnsPrefix
+"FQDN" = $_.Fqdn
+"Private FQDN" = $_.PrivateFQDN
+"AZ Policy Addon Enabled?" = ({True},{False})[$_.AddonProfiles.ContainsKey("azurePolicy")]
+"Node ResourceGroup" = $_.NodeResourceGroup
+"Enable RBAC" = $_.EnableRBAC
+"Enable Pod SecurityPolicy" = $_.EnablePodSecurityPolicy
+
+"Locks" = ((Get-AzResourceLock -ResourceGroupName ($_.id -split '/')[4] -ResourceName $_.Name -ResourceType $_.Type |
+    ForEach-Object{
+        "{"+[string]$_.Name+":"+[string]$_.Properties.level+"}"
+    })) -join ";"
+"Tags" = if($_.Tags -ne $NULL){
+        ($_.Tags.GetEnumerator() |
+            %{"{$($_.Key):$($_.Value)}"}) -join ";"
+    }else {}
+"Agent Pool Profiles" = ($_.AgentPoolProfiles |
+    ForEach-Object{
+       "{"+
+        "Name"+":"+[string]$_.Name+";"+
+        "Count"+":"+[string]$_.Count+";"+
+        "VmSize"+":"+[string]$_.VmSize+";"+
+        "OsDiskSizeGB"+":"+[string]$_.OsDiskSizeGB+";"+
+        "VnetSubnetID"+":"+[string]$_.VnetSubnetID+";"+
+        "MaxPods"+":"+[string]$_.MaxPods+";"+
+        "OsType"+":"+[string]$_.OsType+";"+
+        "MaxCount"+":"+[string]$_.MaxCount+";"+
+        "MinCount"+":"+[string]$_.MinCount+";"+
+        "Mode"+":"+[string]$_.Mode+";"+
+        "EnableAutoScaling"+":"+[string]$_.EnableAutoScaling+";"+
+        "Type"+":"+[string]$_.Type+";"+
+        "OrchestratorVersion"+":"+[string]$_.OrchestratorVersion+";"+
+        "ProvisioningState"+":"+[string]$_.ProvisioningState+";"+
+        "AvailabilityZones"+":"+[string]$_.AvailabilityZones+";"+
+        "EnableNodePublicIP"+":"+[string]$_.EnableNodePublicIP+";"+
+        "ScaleSetPriority"+":"+[string]$_.ScaleSetPriority+";"+
+        "ScaleSetEvictionPolicy"+":"+[string]$_.ScaleSetEvictionPolicy+";"+
+        "NodeTaints"+":"+[string]$_.NodeTaints+";"+
+        "DnsPrefix"+":"+[string]$_.DnsPrefix+";"+
+        "Fqdn"+":"+[string]$_.Fqdn+";"+
+        "Ports"+":"+[string]$_.Ports+";"+
+        "StorageProfile"+":"+[string]$_.StorageProfile+
+        "}"
+    }) -join ";"
+"Windows Profile" = $_.WindowsProfile
+"Addon Profiles" = if($_.AddonProfiles -ne $NULL){
+    ($_.AddonProfiles.GetEnumerator() |
+        %{"{$($_.Key)}"}) -join ";"
+    }else{}
+"NetworkPlugin" = $_.NetworkProfile.NetworkPlugin
+"NetworkPolicy" = $_.NetworkProfile.NetworkPolicy
+"PodCidr" = $_.NetworkProfile.PodCidr
+"ServiceCidr" = $_.NetworkProfile.ServiceCidr
+"DnsServiceIP" = $_.NetworkProfile.DnsServiceIP
+"DockerBridgeCidr" = $_.NetworkProfile.DockerBridgeCidr
+"LoadBalancerSku" = $_.NetworkProfile.LoadBalancerSku
+"LoadBalancerProfile" = ($_.LoadBalancerProfile |
+    ForEach-Object{
+       "{"+
+       "ManagedOutboundIPs"+":"+[string]$_.ManagedOutboundIPs.Count+";"+
+        "OutboundIPPrefixes"+":"+[string]$_.OutboundIPPrefixes+";"+
+        "OutboundIPs"+":"+[string]$_.OutboundIPs+";"+
+        "EffectiveOutboundIPs"+":"+[string]$_.EffectiveOutboundIPs.Id+
+        "}"
+    }) -join ";"
+"Aad Profile" = $_.AadProfile
+"Api Server Access Profile" = $_.ApiServerAccessProfile
+"Identity" = ($_.Identity |
+    ForEach-Object{
+        "{"+
+            "PrincipalId"+":"+[string]$_.PrincipalId+";"+
+            "TenantId"+":"+[string]$_.TenantId+";"+
+            "Type"+":"+[string]$_.Type+
+        "}"
+    }
+) -join ";"
+"LinuxProfile" = ($_.LinuxProfile |
+    ForEach-Object{
+        "{"+
+            "AdminUsername"+":"+[string]$_.AdminUsername+""
+            "Ssh"+":"+[string]$_.Ssh.PublicKeys.keyData+
+        "}"
+    }
+) -join ";"
+"Service Principal Profile" = $_.ServicePrincipalProfile.ClientId
+"Role Assingments" = (Get-AzRoleAssignment -Scope $_.id |
+    ForEach-Object{
+        "{"+
+        "RoleAssignmentId"+":"+[string]$_.RoleAssignmentId+";"+
+        "Scope"+":"+[string]$_.Scope+";"+
+        "DisplayName"+":"+[string]$_.DisplayName+";"+
+        "SignInName"+":"+[string]$_.SignInName+";"+
+        "RoleDefinitionName"+":"+[string]$_.RoleDefinitionName+";"+
+        "RoleDefinitionId"+":"+[string]$_.RoleDefinitionId+";"+
+        "ObjectId"+":"+[string]$_.ObjectId+";"+
+        "ObjectType"+":"+[string]$_.ObjectType+";"+
+        "CanDelegate"+":"+[string]$_.CanDelegate+";"+
+        "Description"+":"+[string]$_.Description+";"+
+        "ConditionVersion"+":"+[string]$_.ConditionVersion+";"+
+        "Condition"+":"+[string]$_.Condition+
+        "}"
+    }
+) -join ";" 
+"Owner Count" = (Get-AzRoleAssignment -Scope $_.id |
+    Group-Object RoleDefinitionName |
+    Where Name -eq "Owner").count
+"Contributor Count" = (Get-AzRoleAssignment -Scope $_.id | 
+    Group-Object RoleDefinitionName | Where Name -eq "Contributor").count
+"Reader Count" = (Get-AzRoleAssignment -Scope $_.id |
+    Group-Object RoleDefinitionName |
+    Where Name -eq "Reader").count
+"Other Roles:Count" = (
+(Get-AzRoleAssignment -Scope $_.id) | 
+Group-Object RoleDefinitionName | 
+Where-Object -FilterScript{($_.Name -ne "Owner") -and ($_.Name -ne "Contributor") -and ($_.Name -ne "Reader")}|
+ForEach-Object{[string]$_.Name+":"+$_.Count}
+) -join ";" 
+"Enabled Metric Categories" = ((Get-AzDiagnosticSetting -ResourceId $_.id).Metrics |
+    ForEach-Object{
+        if($_.Enabled){
+            [string]$_.Category
+        }
+    }) -join ";"
+"Retention Policies for Metrics Enabled?" = ((Get-AzDiagnosticSetting -ResourceId $_.id).Metrics |
+    ForEach-Object{
+        if($_.Enabled){
+            [string]$_.Category+":"+[string]$_.RetentionPolicy
+        }
+    }) -join ";"
+"Enabled Log Categories" = ((Get-AzDiagnosticSetting -ResourceId $_.id).Logs |
+    ForEach-Object{
+        if($_.Enabled){
+            [string]$_.Category
+        }
+    }) -join ";"
+"Retention Policies for Logs Enabled?" = ((Get-AzDiagnosticSetting -ResourceId $_.id).Logs |
+    ForEach-Object{
+        if($_.Enabled){
+            [string]$_.Category+":"+[string]$_.RetentionPolicy.Enabled
+        }
+    }) -join ";"
+}} 
+$mainOut | Export-Csv 'All_AKS.csv' -Force -NoTypeInformation
+
