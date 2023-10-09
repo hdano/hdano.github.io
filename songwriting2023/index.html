@@ -31,7 +31,7 @@
   <body id="page-top">
 
     <div id="timer">
-      NOTICE: Voting will only be available between Oct 9 08:00 PM to Oct 10 08:00 PM Manila Time.
+      NOTICE: Voting will only be available between <strong>Oct 9, 08:00 PM</strong> to <strong>Oct 10, 08:00 PM</strong> Manila Time.
     </div>
 
     <div class="container">
@@ -44,7 +44,7 @@
 
             <div id="voting-early" style="display:none">
 
-              <h1>Voting Not Yet Open</h1>
+              <h1 class="mt-2">Voting Not Yet Open</h1>
 
               <p>Voting is currently not yet open. Please come back by 8:00 PM Manila Time.</p>
 
@@ -52,9 +52,9 @@
 
             <div id="voting-end" style="display:none">
 
-              <h1>Voting was Closed</h1>
+              <h1 class="mt-2">Voting is Closed</h1>
 
-              <p>Sorry, voting was already closed by 8:00 PM Manila Time.</p>
+              <p>Sorry, voting is already closed.</p>
 
             </div>
 
@@ -241,6 +241,12 @@
 
     })
 
+    var manila = (new Date).toLocaleString("en-GB", {timeZone: "Asia/Manila"});
+    var timelimit = "10/10/2023, 20:00:00" 
+    if (timelimit <= manila) {
+      document.getElementById('voting-live').style.display = 'none'
+      document.getElementById('voting-end').style.display = 'block'
+    }
 
 
   </script>
