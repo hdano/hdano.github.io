@@ -29,6 +29,11 @@
     <title>Song Writing Competition 2023 - FYP Amazing Conference</title>
   </head>
   <body id="page-top">
+
+    <div id="timer">
+      NOTICE: This website will only be available between Oct 9 08:00 PM to Oct 10 08:00 PM Manila Time. You still have <span id="timeleft"></span> to vote.
+    </div>
+
     <div class="container">
       <div class="mt-4">
 
@@ -37,101 +42,120 @@
           </div>
           <div class="col-md-6 mb-2">
 
-            <h1>AMAZING HOPE CONFERENCE 2023 Song Writing Contest presents to you the selected top 6 songs from all the song entries. We want you to be part of choosing the winners by voting for the best song.</h1>
+            <div id="voting-early" style="display:none">
 
+              <h1>Voting Not Yet Open</h1>
 
-            <h2>STEP 1: Listen to each song entry</h2>
-            <p>Click on play buttons to listen</p>
+              <p>Voting is currently not yet open. Please come back by 8:00 PM Manila Time.</p>
 
-            <div class="card">
-              <div class="card-body" id="item1">
-                <table class="songitem" cellpadding="0" cellspacing="0">
-                  <tr>
-                    <td class="buttoncol">
-                      <div class="playbutton" data-audio="audio1" data-item="item1"><img src="assets/1x1.png"></div>
-                    </td>
-                    <td class="titlecol">Diyos Ikaw Naman</td>
-                  </tr>
-                </table>
-                <img class="animatedgif" src="assets/playing.gif" style="display:none">
-              </div>
             </div>
 
-            <div class="card">
-              <div class="card-body" id="item2">
-                <table class="songitem" cellpadding="0" cellspacing="0">
-                  <tr>
-                    <td class="buttoncol">
-                      <div class="playbutton" data-audio="audio2" data-item="item2"><img src="assets/1x1.png"></div>
-                    </td>
-                    <td class="titlecol">Magpupuri Sayo</td>
-                  </tr>
-                </table>
-                <img class="animatedgif" src="assets/playing.gif" style="display:none">
-              </div>
+            <div id="voting-end" style="display:none">
+
+              <h1>Voting was Closed</h1>
+
+              <p>Sorry, voting was already closed by 8:00 PM Manila Time.</p>
+
             </div>
 
-            <div class="card">
-              <div class="card-body" id="item3">
-                <table class="songitem" cellpadding="0" cellspacing="0">
-                  <tr>
-                    <td class="buttoncol">
-                      <div class="playbutton" data-audio="audio3" data-item="item3"><img src="assets/1x1.png"></div>
-                    </td>
-                    <td class="titlecol">Master's Plan</td>
-                  </tr>
-                </table>
-                <img class="animatedgif" src="assets/playing.gif" style="display:none">
+            <div id="voting-live">
+
+              <h1>AMAZING HOPE CONFERENCE 2023 Song Writing Contest presents to you the selected top 6 songs from all the song entries. We want you to be part of choosing the winners by voting for the best song.</h1>
+
+
+              <h2>STEP 1: Listen to each song entry</h2>
+              <p>Click on play buttons to listen</p>
+
+              <div class="card">
+                <div class="card-body" id="item1">
+                  <table class="songitem" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td class="buttoncol">
+                        <div class="playbutton" data-audio="audio1" data-item="item1"><img src="assets/1x1.png"></div>
+                      </td>
+                      <td class="titlecol">Song #1</td>
+                    </tr>
+                  </table>
+                  <img class="animatedgif" src="assets/playing.gif" style="display:none">
+                </div>
               </div>
-            </div>
 
-            <div class="card">
-              <div class="card-body" id="item4">
-                <table class="songitem" cellpadding="0" cellspacing="0">
-                  <tr>
-                    <td class="buttoncol">
-                      <div class="playbutton" data-audio="audio4" data-item="item4"><img src="assets/1x1.png"></div>
-                    </td>
-                    <td class="titlecol">Walang Hangang Pasasalamat</td>
-                  </tr>
-                </table>
-                <img class="animatedgif" src="assets/playing.gif" style="display:none">
+              <div class="card">
+                <div class="card-body" id="item2">
+                  <table class="songitem" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td class="buttoncol">
+                        <div class="playbutton" data-audio="audio2" data-item="item2"><img src="assets/1x1.png"></div>
+                      </td>
+                      <td class="titlecol">Song #2</td>
+                    </tr>
+                  </table>
+                  <img class="animatedgif" src="assets/playing.gif" style="display:none">
+                </div>
               </div>
-            </div>
 
-            <div class="card">
-              <div class="card-body" id="item5">
-                <table class="songitem" cellpadding="0" cellspacing="0">
-                  <tr>
-                    <td class="buttoncol">
-                      <div class="playbutton" data-audio="audio5" data-item="item5"><img src="assets/1x1.png"></div>
-                    </td>
-                    <td class="titlecol">Walang Kapantay</td>
-                  </tr>
-                </table>
-                <img class="animatedgif" src="assets/playing.gif" style="display:none">
+              <div class="card">
+                <div class="card-body" id="item3">
+                  <table class="songitem" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td class="buttoncol">
+                        <div class="playbutton" data-audio="audio3" data-item="item3"><img src="assets/1x1.png"></div>
+                      </td>
+                      <td class="titlecol">Song #3</td>
+                    </tr>
+                  </table>
+                  <img class="animatedgif" src="assets/playing.gif" style="display:none">
+                </div>
               </div>
-            </div>
 
-            <div class="card">
-              <div class="card-body" id="item6">
-                <table class="songitem" cellpadding="0" cellspacing="0">
-                  <tr>
-                    <td class="buttoncol">
-                      <div class="playbutton" data-audio="audio6" data-item="item6"><img src="assets/1x1.png"></div>
-                    </td>
-                    <td class="titlecol">You Are My All</td>
-                  </tr>
-                </table>
-                <img class="animatedgif" src="assets/playing.gif" style="display:none">
+              <div class="card">
+                <div class="card-body" id="item4">
+                  <table class="songitem" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td class="buttoncol">
+                        <div class="playbutton" data-audio="audio4" data-item="item4"><img src="assets/1x1.png"></div>
+                      </td>
+                      <td class="titlecol">Song #4</td>
+                    </tr>
+                  </table>
+                  <img class="animatedgif" src="assets/playing.gif" style="display:none">
+                </div>
               </div>
+
+              <div class="card">
+                <div class="card-body" id="item5">
+                  <table class="songitem" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td class="buttoncol">
+                        <div class="playbutton" data-audio="audio5" data-item="item5"><img src="assets/1x1.png"></div>
+                      </td>
+                      <td class="titlecol">Song #5</td>
+                    </tr>
+                  </table>
+                  <img class="animatedgif" src="assets/playing.gif" style="display:none">
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body" id="item6">
+                  <table class="songitem" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td class="buttoncol">
+                        <div class="playbutton" data-audio="audio6" data-item="item6"><img src="assets/1x1.png"></div>
+                      </td>
+                      <td class="titlecol">Song #6</td>
+                    </tr>
+                  </table>
+                  <img class="animatedgif" src="assets/playing.gif" style="display:none">
+                </div>
+              </div>
+
+              <h2 class="mt-2">STEP 2: Vote for the best song of your choice</h2>
+              <p>Click here to vote</p>
+              <p><a class="btn btn-primary" href="https://tinyurl.com/fypSWcontest">VOTE NOW</a></p>
+
+
             </div>
-
-            <h2 class="mt-2">STEP 2: Vote for the best song of your choice</h2>
-            <p>Click here to vote</p>
-            <p><a class="btn btn-primary" href="https://tinyurl.com/fypSWcontest">VOTE NOW</a></p>
-
-
           </div>
         </div>
 
@@ -216,6 +240,8 @@
       }
 
     })
+
+
 
   </script>
 

@@ -66,3 +66,14 @@ td.buttoncol {
 td.titlecol {
     padding-left: 20px;
 }
+
+#timer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: white;
+  color: darkred;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+}
