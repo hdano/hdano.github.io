@@ -1,0 +1,68 @@
+body {
+    font-size: 13px;
+    background: black !important;
+}
+
+h1 { font-size: 25px; }
+h2 { font-size: 20px; font-weight:  bold; }
+h3 { font-size: 18px; font-weight:  bold; }
+h4 { font-size: 16px; font-weight:  bold; }
+h5 { font-size: 14px; font-weight:  bold; }
+
+
+#left-panel {
+    background: url(poster.jpg) no-repeat top center black !important;
+    background-size: contain !important;
+    min-height: 800px;
+}
+
+.playbutton img {
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+    cursor: pointer;
+}
+
+.playbutton {
+    background: url(play.png) center center no-repeat transparent;
+    background-size: contain;
+}
+
+.card-body.playing .playbutton {
+    background: url(stop.png) center center no-repeat transparent;
+    background-size: contain;
+}
+
+.card-body {
+    padding: 10px !important;
+    color: black !important;
+    background: white !important;
+    position: relative;
+}
+
+.card-body:hover {
+    background: lightyellow !important;
+}
+
+.card-body.playing {
+    background: yellow !important;
+}
+
+.card-body img.animatedgif {
+    position: fixed;
+  bottom: 10px;
+  right: 20px;
+  height: 30px;
+}
+
+.card-body.playing img.animatedgif {
+    display: block !important;
+}
+
+td.buttoncol {
+    width: 7%;
+}
+
+td.titlecol {
+    padding-left: 20px;
+}
