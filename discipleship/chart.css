@@ -1,0 +1,188 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 1200px;
+  margin: 0;
+  padding: 50px;
+  color: black;
+  font: 11px Verdana, sans-serif;
+  background: white;
+  user-select: none;
+}
+
+#discipler-name {
+  font-size: 60px;
+  color: darkred;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+#header table.degrees {
+  width: 100%;
+  border-bottom: 1px solid black;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+#header table.degrees td {
+  font-size: 25px;
+}
+
+#header .degree {
+  width: 125px;
+  color: darkred;
+  text-align: center;
+}
+
+#header .ds {
+  margin: 0 0 10px 149px;
+  height: 17px;
+  overflow: hidden;
+}
+
+#header .ds span {
+  font-size: 16px;
+  color: darkred;
+  font-weight: bold;
+  width: 101px;
+  text-align: center;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+#wrapper {
+  position: relative;
+  min-height: 600px;
+}
+
+.branch {
+  position: relative;
+  margin-left: 150px;
+}
+
+.branch:before {
+  content: "";
+  width: 30px;
+  border-top: 1px solid black;
+  position: absolute;
+  left: -50px;
+  top: 50%;
+  margin-top: 1px;
+}
+
+.branch.lvl2 {
+  margin-left: 120px;
+}
+
+.branch.lvl2:before {
+  width: 0px;
+}
+
+.entry {
+  position: relative;
+  min-height: 60px;
+}
+.entry:before {
+  content: "";
+  height: 100%;
+  border-left: 1px solid black;
+  position: absolute;
+  left: -20px;
+}
+.entry:after {
+  content: "";
+  width: 20px;
+  border-top: 1px solid black;
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  margin-top: 1px;
+}
+.entry:first-child:before {
+  width: 10px;
+  height: 50%;
+  top: 50%;
+  margin-top: 2px;
+  border-radius: 10px 0 0 0;
+}
+.entry:first-child:after {
+  height: 10px;
+  border-radius: 10px 0 0 0;
+}
+.entry:last-child:before {
+  width: 10px;
+  height: 50%;
+  border-radius: 0 0 0 10px;
+}
+.entry:last-child:after {
+  height: 10px;
+  border-top: none;
+  border-bottom: 1px solid black;
+  border-radius: 0 0 0 10px;
+  margin-top: -9px;
+}
+.entry.sole:before {
+  display: none;
+}
+.entry.sole:after {
+  width: 20px;
+  height: 0;
+  margin-top: 1px;
+  border-radius: 0;
+}
+
+.label {
+  display: block;
+  width: 100px;
+  height: 54px;
+  padding: 5px;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid darkblue;
+  border-radius: 5px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -25px;
+  background: white;
+  color: black;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.label.gen1 {
+  background: green;
+}
+
+.label.gen2 {
+  background: yellow;
+}
+
+.label:hover {
+  background: lightyellow;
+}
+
+.label.parent {
+  top: 35%;
+}
+
+.label .tag {
+  bottom: -12px;
+  display: inline;
+  position: absolute;
+  left: 19px;
+  color: white;
+  background-color: black;
+  padding: 3px 10px 5px;
+  font-size: 9px;
+  line-height: 9px;
+  border-radius: 5px;
+}
+
+.branch.lvl2 .label {
+  font-weight: normal;
+}
+
