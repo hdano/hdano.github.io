@@ -17,7 +17,7 @@ var genterms = {
 const init = () => {
 
 	$.ajax({
-		url: "data.json"
+		url: `data.json?t=${new Date().getTime()}`
 	}).done(function(data) {
 		renderChart(data[gender])
 		addEventHandlers()
