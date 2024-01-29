@@ -1,3 +1,4 @@
+var gender = "boys"
 var nodes = {}
 var curnodeid = 0
 var genterms = {
@@ -18,13 +19,26 @@ const init = () => {
 	$.ajax({
 		url: "data.json"
 	}).done(function(data) {
-		renderChart(data)
+		renderChart(data[gender])
 		addEventHandlers()
 	});
 }
 
 $(document).ready(function(){
 	init()
+
+	$('#gender-switch .gender-boys').on('click', function(){
+		gender = 'boys'
+		$('#gender-switch span').attr('data-on', 'no')
+		$(this).attr('data-on', 'yes')
+		init()
+	})
+	$('#gender-switch .gender-girls').on('click', function(){
+		gender = 'girls'
+		$('#gender-switch span').attr('data-on', 'no')
+		$(this).attr('data-on', 'yes')
+		init()
+	})
 })
 
 const renderChart = (node) => {

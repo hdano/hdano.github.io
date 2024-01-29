@@ -5,7 +5,7 @@
 body {
   min-width: 1200px;
   margin: 0;
-  padding: 50px;
+  padding: 50px 0 50px 128px;
   color: black;
   font: 11px Verdana, sans-serif;
   background: white;
@@ -55,7 +55,7 @@ body {
 
 #wrapper {
   position: relative;
-  min-height: 600px;
+  /* min-height: 600px; */
 }
 
 .branch {
@@ -153,6 +153,10 @@ body {
   font-weight: bold;
 }
 
+.label.gen0 {
+  background: gray;
+}
+
 .label.gen1 {
   background: green;
 }
@@ -166,7 +170,7 @@ body {
 }
 
 .label.parent {
-  top: 35%;
+  left: -110px;
 }
 
 .label .tag {
@@ -186,3 +190,24 @@ body {
   font-weight: normal;
 }
 
+#gender-switch {
+  position: absolute;
+  left: 22px;
+}
+
+#gender-switch span { 
+  color: black;
+  font-weight: bold;
+  padding: 5px 10px;
+  cursor: pointer;
+  background: gray;
+}
+#gender-switch span[data-on="yes"] { cursor: default; }
+#gender-switch .gender-boys { border-radius: 3px 0 0 3px }
+#gender-switch .gender-girls { border-radius: 0px 3px 3px 0 }
+#gender-switch .gender-boys[data-on="yes"], #gender-switch .gender-boys[data-on="no"]:hover { 
+  background: lightblue 
+}
+#gender-switch .gender-girls[data-on="yes"], #gender-switch .gender-girls[data-on="no"]:hover {
+  background: pink
+}
