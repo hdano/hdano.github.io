@@ -18,6 +18,8 @@ var genterms = {
 
 const init = () => {
 
+	curnodeid = 0
+
 	$.ajax({
 		url: `data.json?t=${new Date().getTime()}`
 	}).done(function(data) {
@@ -71,7 +73,6 @@ const updateDegreeTexts = (generation) => {
 
 const renderChart = (node) => {
 	current_nodekey = node.key || 'node-0'
-	curnodeid = 0
 	$('#discipler-name').text(node.name)
 	var htmlstr = ''
 	if (node.parentkey) {
