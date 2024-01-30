@@ -1,4 +1,6 @@
-var gender = "boys"
+var current_gender = "boys"
+var current_list = "main"
+var current_nodekey = ""
 var nodes = {}
 var curnodeid = 0
 var genterms = {
@@ -19,27 +21,47 @@ const init = () => {
 	$.ajax({
 		url: `data.json?t=${new Date().getTime()}`
 	}).done(function(data) {
-		renderChart(data[gender])
-		addEventHandlers()
+		render(data[current_gender])
 	});
+
+	switchList('main')
 }
 
 $(document).ready(function(){
 	init()
 
 	$('#gender-switch .gender-boys').on('click', function(){
-		gender = 'boys'
-		$('#gender-switch span').attr('data-on', 'no')
-		$(this).attr('data-on', 'yes')
-		init()
+		switchGender('boys', this)
 	})
 	$('#gender-switch .gender-girls').on('click', function(){
-		gender = 'girls'
-		$('#gender-switch span').attr('data-on', 'no')
-		$(this).attr('data-on', 'yes')
-		init()
+		switchGender('girls', this)
+	})
+	$('#list-switch .list-main').on('click', function(){
+		switchList('main')
+		render(nodes[current_nodekey])
+	})
+	$('#list-switch .list-extended').on('click', function(){
+		switchList('extended')
+		render(nodes[current_nodekey])
 	})
 })
+
+const switchGender = (gender, el) => {
+	current_gender = gender
+	$('#gender-switch span').attr('data-on', 'no')
+	$(el).attr('data-on', 'yes')
+	init()
+}
+
+const render = (node) => {
+	renderChart(node)
+	addEventHandlers()
+}
+
+const switchList = (list) => {
+	current_list = list
+	$('#list-switch').attr('data-list', current_list)
+}
 
 const updateDegreeTexts = (generation) => {
 	$('#degree1').text(genterms[`gen${generation}`])
@@ -48,6 +70,7 @@ const updateDegreeTexts = (generation) => {
 }
 
 const renderChart = (node) => {
+	current_nodekey = node.key || 'node-0'
 	curnodeid = 0
 	$('#discipler-name').text(node.name)
 	var htmlstr = ''
@@ -56,9 +79,13 @@ const renderChart = (node) => {
 	} else {
 		node['parentkey'] = ''
 	}
-	updateDegreeTexts(node.generation || 1)
-	htmlstr += drawDisciple(node, node.parentkey, 0)
+	htmlstr += drawDisciple(node, node.parentkey, 0, 0)
 	$('#wrapper').hide().html(htmlstr).fadeIn()
+	updateDegreeTexts(node.generation || 1)
+	$('#list-switch').hide()
+	if (current_list === 'extended' || (current_list === 'main' && node.disciples.extended.length > 0)) {
+		$('#list-switch').show()
+	}
 }
 
 const drawParent = (parentkey) => {
@@ -66,7 +93,7 @@ const drawParent = (parentkey) => {
 	return `<span class="label parent gen${node.generation}" data-key="${parentkey}">${node.name}<span class="tag">discipler</span></span>`
 }
 
-const drawDisciple = (node, parentkey, level) => {
+const drawDisciple = (node, parentkey, level, total_siblings) => {
 	var nodekey = ''
 	if (!node.key) {
 		node['parentkey'] = parentkey
@@ -78,17 +105,27 @@ const drawDisciple = (node, parentkey, level) => {
 		nodekey = node.key
 	}
 	var html = ''
-	if (level > 0) html += '<div class="entry">'
+	if (level > 0) {
+		if (total_siblings === 1) {
+			html += '<div class="entry sole">'
+		} else {
+			html += '<div class="entry">'
+		}
+	}
 	html += `<span class="label gen${node.generation}" data-key="${nodekey}">${node.name}</span>`
 	curnodeid++
-	if (node.disciples.length > 0) {
+	var list = current_list
+	if (level > 0) {
+		list = 'main'
+	}
+	if (node.disciples[list].length > 0) {
 		level++
 		html += `<div class="branch lvl${level}">`
 		if (level >= 2) {
-			html += drawL3Disciples(node.disciples, nodekey, 0)	
+			html += drawL3Disciples(node.disciples[list], nodekey, 0)	
 		} else {
-			node.disciples.map((disciple) => {
-				html += drawDisciple(disciple, nodekey, level)
+			node.disciples[list].map((disciple) => {
+				html += drawDisciple(disciple, nodekey, level, node.disciples[list].length)
 			})
 		}
 		html += '</div>'
@@ -122,8 +159,7 @@ const drawL3Disciples = (disciples, parentkey, idx) => {
 
 const addEventHandlers = () => {
 	$('.label').off('click').on('click', function() {
-		const nodekey = $(this).attr('data-key')
-		renderChart(nodes[nodekey])
-		addEventHandlers()
+		switchList('main')
+		render(nodes[$(this).attr('data-key')])
 	})
 }

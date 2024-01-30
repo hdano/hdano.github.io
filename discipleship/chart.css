@@ -211,3 +211,19 @@ body {
 #gender-switch .gender-girls[data-on="yes"], #gender-switch .gender-girls[data-on="no"]:hover {
   background: pink
 }
+
+#list-switch {
+  margin: 20px 0 20px 153px;
+  background: black;
+  padding: 4px 10px;
+  display: inline-block;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+#list-switch:hover {
+  background: #111;
+}
+#list-switch span { display: none }
+#list-switch[data-list="extended"] .list-main { display: inline; }
+#list-switch[data-list="main"] .list-extended { display: inline; }
