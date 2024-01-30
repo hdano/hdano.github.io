@@ -2,16 +2,16 @@ var gender = "boys"
 var nodes = {}
 var curnodeid = 0
 var genterms = {
-	'1': '1st',
-	'2': '2nd',
-	'3': '3rd',
-	'4': '4th',
-	'5': '5th',
-	'6': '6th',
-	'7': '7th',
-	'8': '8th',
-	'9': '9th',
-	'10': '10th'
+	'gen1': '1st',
+	'gen2': '2nd',
+	'gen3': '3rd',
+	'gen4': '4th',
+	'gen5': '5th',
+	'gen6': '6th',
+	'gen7': '7th',
+	'gen8': '8th',
+	'gen9': '9th',
+	'gen10': '10th'
 }
 
 const init = () => {
@@ -41,18 +41,22 @@ $(document).ready(function(){
 	})
 })
 
+const updateDegreeTexts = (generation) => {
+	$('#degree1').text(genterms[`gen${generation}`])
+	$('#degree2').text(genterms[`gen${generation + 1}`])
+	$('#degree3').text(genterms[`gen${generation + 2}`])
+}
+
 const renderChart = (node) => {
 	curnodeid = 0
 	$('#discipler-name').text(node.name)
-	$('#degree1').text(genterms[`${node.generation}`])
-	$('#degree2').text(genterms[`${node.generation + 1}`])
-	$('#degree3').text(genterms[`${node.generation + 2}`])
 	var htmlstr = ''
 	if (node.parentkey) {
 		htmlstr += drawParent(node.parentkey)
 	} else {
 		node['parentkey'] = ''
 	}
+	updateDegreeTexts(node.generation || 1)
 	htmlstr += drawDisciple(node, node.parentkey, 0)
 	$('#wrapper').hide().html(htmlstr).fadeIn()
 }
