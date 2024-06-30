@@ -24,15 +24,17 @@ const updateLabels = () => {
 const gotoContent = (name) => {
     $('.content').hide()
     $(`#content-${name}`).fadeIn('fast')
+    menu_name = name.indexOf('manual') > -1 ? 'manuals' : name
     $('.nav-link').removeClass('active')
-    $(`.nav-link.link-${name}`).addClass('active')
+    $(`.nav-link.link-${menu_name}`).addClass('active')
     $('.nav-link .current').removeClass('visually-hidden').addClass('hidden').text('')
-    $(`.nav-link.link-${name} .current`).removeClass('hidden').addClass('visually-hidden').text('(current)')
+    $(`.nav-link.link-${menu_name} .current`).removeClass('hidden').addClass('visually-hidden').text('(current)')
 }
 
 const activateLinks = () => {
   $('.link-home').click(function(e){gotoContent('home')})
   $('.link-manuals').click(function(e){gotoContent('manuals')})
+  $('.link-manual-theory').click(function(e){gotoContent('manual-theory')})
   $('.link-guidebook').click(function(e){gotoContent('guidebook')})
   $('.link-about').click(function(e){gotoContent('about')})
 }
