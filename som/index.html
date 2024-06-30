@@ -176,7 +176,14 @@
                       </h2>
                       <div id="theory-day1-topic1" class="accordion-collapse collapse" aria-labelledby="theory-day1-topic1-heading" data-bs-parent="#theory-day1">
                         <div class="accordion-body">
-                          <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                          <img src="pics/pic1.png" class="float-left" />
+                          A note is literally a <strong>pitched sound</strong>.<br />
+                          A note also refers to a <strong>sign</strong> used in musical notation to represent the relative duration and pitch of a sound.<br />
+                          We use letters <code>A</code> to <code>G</code> recursively to define the pitch of a note.<br />
+                          A has lower pitch then <code>B</code>, <code>G</code> has higher pitch that <code>F</code>, and so on.<br />
+                          When a note is higher that <code>G</code>, we use letter <code>A</code> again and when a note is lower than <code>A</code>, we use letter <code>G</code> again.<br />
+                          This is an example of how notes are lined up:<br /><code>A B C D E F G A B C D E F G A B C D E F G A B C D E F G</code>
+                          </ul>
                         </div>
                       </div>
                     </div>
@@ -188,7 +195,36 @@
                       </h2>
                       <div id="theory-day1-topic2" class="accordion-collapse collapse" aria-labelledby="theory-day1-topic2-heading" data-bs-parent="#theory-day1">
                         <div class="accordion-body">
-                          <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                          In between each note, there are also pitches that are either higher or lower – these are the sharps and flats.<br />
+                          <img src="pics/pic3.png" class="float-left" />
+                          A <strong>Sharp</strong> note, symbolized by <code>#</code>, has a pitch higher than the attached note but lower than the next note.<br />
+                          For example, <code>A#</code> (A Sharp) is higher than <code>A</code> but lower than <code>B</code><br />
+                          <div class="alert alert-dismissible alert-light mt-2">
+                            <strong>Caution:</strong> There are two notes that does not have sharp counterparts - these
+                            are <code>B</code> and <code>E</code>. If in case you encountered a <code>B#</code> in a musical piece, it actually
+                            means <code>C</code> and <code>E#</code> actually means <code>F</code>.
+                          </div>
+                          This is an example of how sharp notes are lined up:<br />
+                          <code>A - A# - B - C - C# - D - D# - E - F - F# - G - G# - A - A# - B - C - C# -</code><br />
+                          <img src="pics/pic4.png" class="float-left" />
+                          A <strong>Flat</strong> note, symbolized by <code>b</code>, has a pitch lower than the attached note but
+                          higher than the previous note.<br />
+                          For example, <code>Bb</code> (B Flat) is lower than <code>B</code> but higher than <code>A</code><br />
+                          <div class="alert alert-dismissible alert-light mt-2">
+                            <strong>Caution</strong>: There are two notes that does not have flat counterparts – these
+                            are <code>C</code> and <code>F</code>. If in case you encountered a <code>Cb</code> in a musical piece, it actually
+                            means <code>B</code>. <code>Fb</code> actually means <code>E</code>.
+                          </div>
+                          This is an example of how flat notes are lined up:<br />
+                          <code>Ab - A - Bb - B - C - Db - D - Eb - E - F - Gb - G - Ab - A - Bb - B - C - Db - D</code><br />
+                          In case you noticed, sharps and flats are related to each other. If fact, A
+                          sharp note is equivalent to a specific flat note.<br />
+                          For example, if <code>A#</code> > <code>A</code> and < <code>B</code>, and <code>Bb</code> < <code>B</code> and > <code>A</code>, then <code>A#</code> = <code>Bb</code><br />
+                          Below is a list of sharps with their equivalent flats:<br />
+                          <img src="pics/pic6.png" style="width:100%;max-width:450px" /><br />
+                          <img src="pics/pic5.png" class="float-left" />
+                          Lastly, when a note is neither sharp nor flat, it is called a <strong>Neutral</strong> note.<br />
+                          <code>A</code>, <code>B</code> and <code>C</code> are neutral notes.
                         </div>
                       </div>
                     </div>
@@ -200,7 +236,36 @@
                       </h2>
                       <div id="theory-day1-topic3" class="accordion-collapse collapse" aria-labelledby="theory-day1-topic3-heading" data-bs-parent="#theory-day1">
                         <div class="accordion-body">
-                          <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                          A <strong>Staff</strong>, or stave, is the foundation upon which notes are drawn.
+                          The modern staff comprises five lines and four spaces.<br />
+                          Every line and space on the staff represents a note.<br />
+                          A <strong>Clef</strong> assigns individual notes to lines and spaces.<br />
+                          The two most common clefs are Treble and Bass clefs.<br />
+                          The <strong>Treble clef</strong>, or G-Clef, is drawn on a staff where the center curve is at the
+                          second line.<br />
+                          It is also called G-clef because any note symble placed at the second line is
+                          assigned as <code>G</code>. Other note above the second line, including spaces, are higher
+                          than <code>G</code>, those placed below the second line are lower than <code>G</code>.<br />
+                          This is an example of a treble clef on a staff with notes:<br />
+                          <img src="pics/pic7.png" /><br />
+                          The <strong>Bass clef</strong>, or F-Clef, is drawn on a staff where the center curve is at the
+                          fourth line.<br />
+                          It is also called F-clef because any note symbol placed at the fourth line is
+                          assigned as <code>F</code>. Other note above the fourth line, including spaces, are higher
+                          than <code>F</code>, those placed below the fourth line are lower than <code>F</code>.
+                          This is an example of a bass clef on a staff with notes:<br />
+                          <img src="pics/pic8.png" /><br />
+                          When you combine two staffs with treble and bass clefs,
+                          you will form a <strong>Grand staff</strong>.<br />
+                          <img src="pics/pic9.png" /><br />
+                          Now, what happens if we ran out of lines and spaces above
+                          or below the staff? How can we write the <code>A</code> higher than the
+                          space above a Treble-clef staff, or the <code>C</code> lower than the
+                          space below the same staff?<br />
+                          The solution to this is by using a ledger line.<br />
+                          A <strong>Ledger line</strong> is a small line that extends the lines in a staff<br />
+                          Below is an example of a ledger line in a staff with treble clef:<br />
+                          <img src="pics/pic10.png" /><br />
                         </div>
                       </div>
                     </div>
