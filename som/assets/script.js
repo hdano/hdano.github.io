@@ -34,9 +34,26 @@ const gotoContent = (name) => {
 const activateLinks = () => {
   $('.link-home').click(function(e){gotoContent('home')})
   $('.link-manuals').click(function(e){gotoContent('manuals')})
-  $('.link-manual-theory').click(function(e){gotoContent('manual-theory')})
   $('.link-guidebook').click(function(e){gotoContent('guidebook')})
   $('.link-about').click(function(e){gotoContent('about')})
+  $('.link-manual').click(function(e){
+    loadManualContents($(this).attr('data-manual'))
+    gotoContent('manual')
+  })
+}
+
+const loadManualContents = (manual) => {
+  let manual_name = manual === 'instrument' ? USER.instrument : 'Music Theory'
+  manual = manual === 'instrument' ? USER.instrument : 'theory'
+  $('.fill-manual').text(manual_name)
+  $('#content-manual .manual-content').each(function(){
+    $(this).html('')
+    let content = $(this).attr('data-content')
+    let url = `manuals/${USER.level}/${manual}/${content}.html`
+    $.get(url, (html) => {
+      $(this).html(html)
+    })
+  })
 }
 
 const init = () => {
