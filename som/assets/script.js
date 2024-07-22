@@ -49,7 +49,7 @@ const loadManualContents = (manual) => {
   $('#content-manual .manual-content').each(function(){
     $(this).html('')
     let content = $(this).attr('data-content')
-    let url = `manuals/${USER.level}/${manual}/${content}.html`
+    let url = `manuals/${USER.level}/${manual}/${content}.html?${Math.random()}`
     $.get(url, (html) => {
       $(this).html(html)
     })
